@@ -52,4 +52,18 @@ public class DipTest {
         assertEquals("N[ 10 20 30 40 50] S[  1  2]", result, "format as string: formatted string not as expected. ");
     }
 
+    @Test
+    public void testNewStars(){
+        int[] validNumbers = {1, 10, 37, 45, 46};
+        int[] validStars1 = {6, 9};
+        int[] validStars2 = {5, 12};
+        int[] invalidStars1 = {0, 4};
+        int[] invalidStars2 = {1, 13}; 
+
+        assertDoesNotThrow(() -> {new Dip(validNumbers, validStars1);});
+        assertDoesNotThrow(() -> {new Dip(validNumbers, validStars2);});
+        assertThrows( IllegalArgumentException.class, () -> {new Dip(validNumbers, invalidStars1);});
+        assertThrows( IllegalArgumentException.class, () -> {new Dip(validNumbers, invalidStars2);});
+    }
+
 }

@@ -61,5 +61,19 @@ public class SetOfNaturalsTest {
 
     }
 
+    @Test
+    public void testDuplicateElements(){
+        setA.add(99);
+        assertEquals(1, setA.size());
+        assertThrows(IllegalArgumentException.class, () -> {setA.add(99);});
+        assertThrows(IllegalArgumentException.class, () -> {setA.add(new int[]{99,99,99,99});});
+        assertThrows(IllegalArgumentException.class, () -> {setD = SetOfNaturals.fromArray(new int[]{99,99,99,99});});
+    }
+
+    @Test
+    public void testIntersectForIntersection(){
+        assertTrue(setB.intersects(setD));
+    }
+
 
 }

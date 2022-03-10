@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="euromillions.DipTest" time="0.001" tests="2" errors="0" skipped="0" failures="2">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="euromillions.DipTest" time="0.002" tests="3" errors="0" skipped="0" failures="1">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/surefire/surefirebooter2284886156636340786.jar /home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/surefire 2022-03-10T15-44-54_824-jvmRun1 surefire13873878899440443363tmp surefire_0229049423610076402tmp"/>
+    <property name="sun.java.command" value="/home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/surefire/surefirebooter9473746687215415186.jar /home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/surefire 2022-03-10T16-46-12_354-jvmRun1 surefire6480216325733956252tmp surefire_03778893471260957858tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/test-classes:/home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/classes:/home/dinis-lei/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.0/junit-jupiter-engine-5.6.0.jar:/home/dinis-lei/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/dinis-lei/.m2/repository/org/junit/platform/junit-platform-engine/1.6.0/junit-platform-engine-1.6.0.jar:/home/dinis-lei/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/dinis-lei/.m2/repository/org/junit/platform/junit-platform-commons/1.6.0/junit-platform-commons-1.6.0.jar:/home/dinis-lei/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.0/junit-jupiter-api-5.6.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/surefire/surefirebooter2284886156636340786.jar"/>
+    <property name="surefire.real.class.path" value="/home/dinis-lei/Desktop/tqs_98452/lab1/lab1_2/target/surefire/surefirebooter9473746687215415186.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.13+8-Ubuntu-0ubuntu1.20.04"/>
     <property name="user.name" value="dinis-lei"/>
@@ -59,14 +59,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testConstructorFromBadArrays" classname="euromillions.DipTest" time="0">
-    <failure message="constructor from bad arrays: test not implemented yet" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: constructor from bad arrays: test not implemented yet
-	at euromillions.DipTest.testConstructorFromBadArrays(DipTest.java:36)
+  <testcase name="testConstructorFromBadArrays" classname="euromillions.DipTest" time="0"/>
+  <testcase name="testFormat" classname="euromillions.DipTest" time="0"/>
+  <testcase name="testNewStars" classname="euromillions.DipTest" time="0">
+    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at euromillions.DipTest.testNewStars(DipTest.java:66)
 </failure>
-  </testcase>
-  <testcase name="testFormat" classname="euromillions.DipTest" time="0">
-    <failure message="format as string: formatted string not as expected.  ==&gt; expected: &lt;N[ 10 20 30 40 50] S[  1  2]&gt; but was: &lt;N[ 10 20 30 40 50] S[12&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: format as string: formatted string not as expected.  ==> expected: <N[ 10 20 30 40 50] S[  1  2]> but was: <N[ 10 20 30 40 50] S[12>
-	at euromillions.DipTest.testFormat(DipTest.java:43)
-]]></failure>
   </testcase>
 </testsuite>
