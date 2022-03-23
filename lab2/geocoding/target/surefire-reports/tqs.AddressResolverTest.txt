@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: tqs.StocksPortfolioTest
+Test set: tqs.AddressResolverTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.347 s - in tqs.StocksPortfolioTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.32 s - in tqs.AddressResolverTest

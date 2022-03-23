@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tqs.StocksPortfolioTest" time="0.215" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tqs.StocksPortfolioTest" time="0.347" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/surefire/surefirebooter17545299681223913811.jar /home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/surefire 2022-03-17T15-23-11_007-jvmRun1 surefire9892563286513988787tmp surefire_011643366589916631576tmp"/>
+    <property name="sun.java.command" value="/home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/surefire/surefirebooter3711882814454183254.jar /home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/surefire 2022-03-23T14-33-18_933-jvmRun1 surefire17409436515629313318tmp surefire_015109719132528152420tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/test-classes:/home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/classes:/home/dinis-lei/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.7.1/junit-jupiter-engine-5.7.1.jar:/home/dinis-lei/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/dinis-lei/.m2/repository/org/junit/platform/junit-platform-engine/1.7.1/junit-platform-engine-1.7.1.jar:/home/dinis-lei/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.7.1/junit-jupiter-api-5.7.1.jar:/home/dinis-lei/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/dinis-lei/.m2/repository/org/junit/platform/junit-platform-commons/1.7.1/junit-platform-commons-1.7.1.jar:/home/dinis-lei/.m2/repository/org/junit/vintage/junit-vintage-engine/5.7.1/junit-vintage-engine-5.7.1.jar:/home/dinis-lei/.m2/repository/junit/junit/4.13/junit-4.13.jar:/home/dinis-lei/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/dinis-lei/.m2/repository/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.jar:/home/dinis-lei/.m2/repository/org/mockito/mockito-core/3.3.3/mockito-core-3.3.3.jar:/home/dinis-lei/.m2/repository/net/bytebuddy/byte-buddy/1.10.5/byte-buddy-1.10.5.jar:/home/dinis-lei/.m2/repository/net/bytebuddy/byte-buddy-agent/1.10.5/byte-buddy-agent-1.10.5.jar:/home/dinis-lei/.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar:/home/dinis-lei/.m2/repository/org/mockito/mockito-junit-jupiter/3.3.3/mockito-junit-jupiter-3.3.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/surefire/surefirebooter17545299681223913811.jar"/>
+    <property name="surefire.real.class.path" value="/home/dinis-lei/Desktop/tqs_98452/lab2/stocks/target/surefire/surefirebooter3711882814454183254.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.13+8-Ubuntu-0ubuntu1.20.04"/>
     <property name="user.name" value="dinis-lei"/>
@@ -59,5 +59,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testGetTotalValue" classname="tqs.StocksPortfolioTest" time="0.212"/>
+  <testcase name="testGetTotalValue" classname="tqs.StocksPortfolioTest" time="0.343"/>
 </testsuite>

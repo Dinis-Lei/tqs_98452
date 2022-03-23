@@ -11,8 +11,11 @@ import java.net.URISyntaxException;
 import org.apache.http.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class AddressResolverTest {
 
     @Mock
@@ -21,8 +24,8 @@ public class AddressResolverTest {
     private AddressResolver resolver;
 
     @BeforeEach
-    void setup(){
-        client = mock(TqsBasicHttpClient.class);
+    void setup() throws IOException{
+        //client = mock(TqsBasicHttpClient.class);
 
         resolver = new AddressResolver(client);
 
@@ -45,7 +48,7 @@ public class AddressResolverTest {
         "-8.657881|marker-sm-50318A-1&scalebar=true&zoom=15&rand=-562874444\",\"roadMetadata\":null}]}]}"
         );
 
-        when(client.doHttpGet("http://open.mapquestapi.com/geocoding/v1/reverse?key=uXSAVwYWbf9tJmsjEGHKKAo0gOjZfBLQ&location=40.631800%2C-200.000000&includeRoadMetadata=true"))
+        when(client.doHttpGet("http://open.mapquestapi.com/geocoding/v1/reverse?key=uXSAVwYWbf9tJmsjEGHKKAo0gOjZfBLQ&location=30.333472%2C-81.470448&includeRoadMetadata=true"))
         .thenReturn(
           "{\"info\":{\"statuscode\":0," +
           "\"copyright\":{\"text\":\"\u00A9 2022 MapQuest, Inc.\",\"imageUrl\":\"http://api.mqcdn.com/res/mqlogo.gif\"," + 
@@ -74,13 +77,13 @@ public class AddressResolverTest {
             "Centro", "3810-193", null));
 
         // Incorrect location
-        assertNotEquals(resolver.findAddressForLocation(40.6318, -200), 
+        assertNotEquals(resolver.findAddressForLocation(30.333472,-81.470448), 
         new Address("Parque Estacionamento da Reitoria - Univerisdade de Aveiro",
         "Glória e Vera Cruz",
         "Centro", "3810-193", null));
 
         // Correct location
-        assertEquals(resolver.findAddressForLocation(40.6318, -200), 
+        assertEquals(resolver.findAddressForLocation(30.333472,-81.470448), 
         new Address("Ashley Melisse Boulevard",
         "Jacksonville",
         "FL", "32225", null));
