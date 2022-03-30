@@ -5,7 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+//import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -14,11 +14,13 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestDatabase
+//@AutoConfigureTestDatabase
+@TestPropertySource( locations = "application-integrationtest.properties")
 public class CarRestControllerIT {
     // will need to use the server port for the invocation url
     @LocalServerPort
@@ -39,12 +41,10 @@ public class CarRestControllerIT {
 
     @Test
     public void whenValidInput_thenCreateCar() {
-        Car test = new Car(1L, "Mustang", "Ford");
+        Car test = new Car("Renaut", "Clio");
         restTemplate.postForEntity("/api/cars", test, Car.class);
-
         List<Car> found = repository.findAll();
-        
-        assertThat(found).extracting(Car::getCarId).containsOnly(test.getCarId());
+        assertThat(found).extracting(Car::getModel).containsOnly(test.getModel());
     }
 
     @Test
