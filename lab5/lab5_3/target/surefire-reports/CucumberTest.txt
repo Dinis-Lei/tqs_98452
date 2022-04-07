@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: CucumberTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 18.298 s <<< FAILURE! - in CucumberTest
+Purchase flight  Time elapsed: 8.05 s  <<< ERROR!
+io.cucumber.junit.platform.engine.UndefinedStepException: 
+The step 'I should be redireted to "https://blazedemo.com/confirmation.php"' is undefined.
+You can implement this step using the snippet(s) below:
+
+@Then("I should be redireted to {string}")
+public void i_should_be_redireted_to(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+
