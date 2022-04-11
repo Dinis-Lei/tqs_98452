@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 //@AutoConfigureTestDatabase
 @TestPropertySource( locations = "application-integrationtest.properties")
-public class CarRestControllerIT {
+class CarRestControllerIT {
     // will need to use the server port for the invocation url
     @LocalServerPort
     int randomServerPort;
@@ -40,7 +40,7 @@ public class CarRestControllerIT {
 
 
     @Test
-    public void whenValidInput_thenCreateCar() {
+    void whenValidInput_thenCreateCar() {
         Car test = new Car("Renaut", "Clio");
         restTemplate.postForEntity("/api/cars", test, Car.class);
         List<Car> found = repository.findAll();
@@ -48,7 +48,7 @@ public class CarRestControllerIT {
     }
 
     @Test
-    public void givenCars_whenGetCars_thenStatus200()  {
+    void givenCars_whenGetCars_thenStatus200()  {
         Car test1 = new Car("Ford", "Mustang");
         repository.saveAndFlush(test1);
         Car test2 = new Car("Toyota", "Corolla");
