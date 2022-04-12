@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class CarService_WithMockRepositoryTest {
+class CarService_WithMockRepositoryTest {
     
     @InjectMocks
     private CarManagerService service;
@@ -42,14 +42,14 @@ public class CarService_WithMockRepositoryTest {
     }
 
     @Test
-    public void whenSaveCar_thenReturnCarTest(){
+    void whenSaveCar_thenReturnCarTest(){
 
         assertThat(service.save(testCar1)).isEqualTo(testCar1);
         verify(repository).save(testCar1);
     }
 
     @Test
-    public void whenGetAllCars_thenReturnListCarsTest(){
+    void whenGetAllCars_thenReturnListCarsTest(){
         List<Car> cars = service.getAllCars();
         assertThat(cars)
             .hasSize(3)
@@ -60,10 +60,10 @@ public class CarService_WithMockRepositoryTest {
     }
 
     @Test 
-    public void whenGetCarDetails_thenReturnCarTest(){
+    void whenGetCarDetails_thenReturnCarTest(){
         assertThat(service.getCarDetails(testCar1.getCarId())).isEqualTo(Optional.of(testCar1));
         verify(repository).findById(testCar1.getCarId());
-        assertThat(service.getCarDetails(10L)).isEqualTo(null);
+        assertThat(service.getCarDetails(10L)).isNull();
         verify(repository).findById(10L);
     }
     

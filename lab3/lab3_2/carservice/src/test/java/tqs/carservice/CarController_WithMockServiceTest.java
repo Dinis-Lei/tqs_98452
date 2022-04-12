@@ -24,7 +24,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(CarController.class)
-public class CarController_WithMockServiceTest {
+class CarController_WithMockServiceTest {
 
     @Autowired
     private MockMvc mvc;    //entry point to the web framework
@@ -35,10 +35,10 @@ public class CarController_WithMockServiceTest {
     private CarManagerService service;
 
     @BeforeEach
-    public void setup(){}
+    void setup(){}
 
     @Test
-    public void whenPostCar_thenCreateCar() throws IOException, Exception{
+    void whenPostCar_thenCreateCar() throws IOException, Exception{
         Car testCar = new Car("Ford", "Mustang");
 
         when(service.save(Mockito.any())).thenReturn(testCar);
@@ -51,7 +51,7 @@ public class CarController_WithMockServiceTest {
     }
 
     @Test
-    public void whenGetCars_thenReturnJsonArray() throws Exception{
+    void whenGetCars_thenReturnJsonArray() throws Exception{
         Car testCar1 = new Car("Ford", "Mustang");
         Car testCar2 = new Car("Renault", "Clio");
         Car testCar3 = new Car("Toyota", "Corolla");
@@ -75,7 +75,7 @@ public class CarController_WithMockServiceTest {
     }
 
     @Test
-    public void whenGetCarsWithId_theReturnCar() throws Exception{
+    void whenGetCarsWithId_theReturnCar() throws Exception{
         Car testCar = new Car(1L, "Ford", "Mustang");
         Optional<Car> test = Optional.of(testCar);
 

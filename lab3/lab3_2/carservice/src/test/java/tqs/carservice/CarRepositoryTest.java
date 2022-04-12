@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class CarRepositoryTest {
+class CarRepositoryTest {
     
     @Autowired
     private TestEntityManager entityManager;
@@ -20,7 +20,7 @@ public class CarRepositoryTest {
     private CarRepository repository;
 
     @Test
-    public void whenFindCarById_thenReturnCar() {
+    void whenFindCarById_thenReturnCar() {
         // arrange a new car and insert into db
         Car test = new Car("Ford", "Mustang");
         entityManager.persistAndFlush(test); //ensure data is persisted at this point
@@ -31,13 +31,13 @@ public class CarRepositoryTest {
     }
 
     @Test
-    public void whenInvalidCarId_thenReturnOptionalEmpty() {
+    void whenInvalidCarId_thenReturnOptionalEmpty() {
         Optional<Car> fromDb = repository.findById(-100L);
-        assertThat(fromDb.isEmpty());
+        assertThat(fromDb).isEmpty();
     }
 
     @Test
-    public void givenSetOfCars_whenFindAll_thenReturnAllCars() {
+    void givenSetOfCars_whenFindAll_thenReturnAllCars() {
         Car test1 = new Car("Ford", "Mustang");
         Car test2 = new Car("Renaut", "Clio");
         Car test3 = new Car("Toyota", "Corolla");
