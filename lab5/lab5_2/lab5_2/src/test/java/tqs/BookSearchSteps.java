@@ -5,9 +5,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ParameterType;
