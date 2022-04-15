@@ -91,4 +91,20 @@ public class CacheTest {
 
     }
 
+    @Test
+    void ratioTets(){
+        cache.get("portugal:2022-04-13");
+        cache.get("portugal:2022-04-13");
+        cache.get("portugal:2022-04-12");
+        cache.get("usa:2022-04-13");
+        cache.get("miss");
+        cache.get("miss");
+        cache.get("miss");
+
+        assertThat(cache.getRatio()).isEqualTo(4.0/(3+4));
+        cache.get("miss");
+        assertThat(cache.getRatio()).isEqualTo(0.5);
+
+    }
+
 }
