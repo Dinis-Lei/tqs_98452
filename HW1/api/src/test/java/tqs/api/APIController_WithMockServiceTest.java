@@ -1,15 +1,16 @@
 package tqs.api;
 
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.hasSize;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.http.MediaType;
-import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,21 +27,50 @@ public class APIController_WithMockServiceTest {
     private APIService service;
 
     @Test
-    public void whenGetDataByCountry_thenReturnJSONArrya() throws IOException, InterruptedException, ParseException{
+    void whenGetDataByCountry_thenReturnJSONArrya() throws Exception{
 
-        CovidData test = new CovidData("usa", "+1907", Long.valueOf(1132845), Long.valueOf(82104974), "+51", Long.valueOf(1012512), Long.valueOf(992036216), "2022-04-12");
+        ArrayList<CovidData> test = new ArrayList<>(){
+            {
+                add(new CovidData("portugal", "+5", 1234L, 100000L, "+2", 3000L, 5000L, "2022-04-13"));
+                add(new CovidData("portugal", "+5", 1234L, 100000L, "+2", 3000L, 5000L, "2022-04-12"));
+                add(new CovidData("portugal", "+5", 1234L, 100000L, "+2", 3000L, 5000L, "2022-04-11"));
+            }
+        }; 
 
-        when(service.getDataByCountry("portugal")).thenReturn(test);
+        when(service.getDataByCountry("portugal", 3)).thenReturn(test);
 
-        // TODO: THIS
+        mvc.perform(
+                get("/api/portugal").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].country", is("portugal")))
+                .andExpect(jsonPath("$[0].day", is("2022-04-13")))
+                .andExpect(jsonPath("$[1].country", is("portugal")))
+                .andExpect(jsonPath("$[1].day", is("2022-04-12")))
+                .andExpect(jsonPath("$[2].country", is("portugal")))
+                .andExpect(jsonPath("$[2].day", is("2022-04-11")));
+    }
 
-        //mvc.perform(
-        //        post("/api/cars").contentType(MediaType.APPLICATION_JSON).content(test))
-        //        .andExpect(status().isCreated())
-        //        .andExpect(jsonPath("$.maker", is("Ford")))
-        //        .andExpect(jsonPath("$.model", is("Mustang")));
+    @Test
+    void cacheStatsTest() throws Exception{
 
+        HashMap<String,Double> cacheStats = new HashMap<>();
 
+        cacheStats.put("hits", 11.0);                
+        cacheStats.put("miss", 7.0);            
+        cacheStats.put("total_requests", 18.0);            
+        cacheStats.put("ratio", 11.0/18);                
+
+        when(service.getCacheStats()).thenReturn(cacheStats);
+
+        mvc.perform(
+            get("/api/cachestats").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.hits", is(11.0)))
+            .andExpect(jsonPath("$.total_requests", is(18.0)))
+            .andExpect(jsonPath("$.ratio", is(11.0/18)))
+            .andExpect(jsonPath("$.miss", is(7.0)));
+        
     }
 
 }
