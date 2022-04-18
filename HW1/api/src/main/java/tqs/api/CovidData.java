@@ -15,22 +15,25 @@ public class CovidData {
     private Long totalTests;
     private String day;
     
-    public CovidData(String country, String newCases, Long activeCases, Long totalCases, String newDeaths, Long totalDeaths,
-            Long totalTests, String day) throws ParseException {
+    public CovidData(String country, Long newCases, Long activeCases, Long totalCases, Long newDeaths, Long totalDeaths,
+            Long totalTests, String day) {
         this.country = country;
-        this.newCases = newCases != null? Long.parseLong(newCases.replace("+", "")):null;
+        this.newCases = newCases;
         this.activeCases = activeCases;
         this.totalCases = totalCases;
-        this.newDeaths = newDeaths != null? Long.parseLong(newDeaths.replace("+", "")):null;
+        this.newDeaths = newDeaths;
         this.totalDeaths = totalDeaths;
         this.totalTests = totalTests;
         this.day = day;
     }
 
     public CovidData(JSONObject obj) throws ParseException{
+        System.out.println(obj);
         JSONObject cases = (JSONObject) obj.get("cases");
         JSONObject deaths = (JSONObject) obj.get("deaths");
         JSONObject tests = (JSONObject) obj.get("tests");
+
+        System.out.println(deaths.get("new"));
 
         this.country = (String) obj.get("country");
         this.day = (String) obj.get("day");
@@ -38,12 +41,15 @@ public class CovidData {
         this.newCases = cases.get("new") != null ? Long.parseLong( ((String) cases.get("new")).replace("+", "")) : null;
         this.activeCases = (Long) cases.get("active");
         this.totalCases = (Long) cases.get("total"); 
-        this.newDeaths = newDeaths != null ? Long.parseLong(((String) deaths.get("new")).replace("+", "")) : null;
+        this.newDeaths = deaths.get("new") != null ? Long.parseLong(((String) deaths.get("new")).replace("+", "")) : null;
         this.totalDeaths = (Long) deaths.get("total");
         this.totalTests = (Long) tests.get("total");
 
     }
 
+
+    public CovidData() {
+    }
 
     public String getCountry() {
         return country;

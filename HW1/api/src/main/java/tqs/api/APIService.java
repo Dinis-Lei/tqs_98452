@@ -17,6 +17,7 @@ public class APIService {
     
     private Cache cache = new Cache(15, 2, 20);
     private MyHttpClient myHttpClient;
+    private CovidFactory factory = new CovidFactory();
 
     public APIService(MyHttpClient client){
         myHttpClient = client;
@@ -42,9 +43,9 @@ public class APIService {
             else {
                 JSONObject obj = (JSONObject) myHttpClient.fetch(country, date.toString());
                 if (obj != null){
-                    JSONObject resp = (JSONObject) ((JSONArray) obj.get("response")).get(0);
-                    CovidData d = new CovidData(resp);
-                    cache.put(key, d);
+                    JSONArray resp = (JSONArray) obj.get("response");
+                    CovidData d = factory.covidFactory(resp);
+                    cache.put(key, d); 
                     data.add(d); 
                 }
             } 

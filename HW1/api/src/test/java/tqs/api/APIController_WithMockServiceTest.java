@@ -31,9 +31,9 @@ public class APIController_WithMockServiceTest {
 
         ArrayList<CovidData> test = new ArrayList<>(){
             {
-                add(new CovidData("portugal", "+5", 1234L, 100000L, "+2", 3000L, 5000L, "2022-04-13"));
-                add(new CovidData("portugal", "+5", 1234L, 100000L, "+2", 3000L, 5000L, "2022-04-12"));
-                add(new CovidData("portugal", "+5", 1234L, 100000L, "+2", 3000L, 5000L, "2022-04-11"));
+                add(new CovidData("portugal", 5L, 1234L, 100000L, 2L, 3000L, 5000L, "2022-04-13"));
+                add(new CovidData("portugal", 5L, 1234L, 100000L, 2L, 3000L, 5000L, "2022-04-12"));
+                add(new CovidData("portugal", 5L, 1234L, 100000L, 2L, 3000L, 5000L, "2022-04-11"));
             }
         }; 
 
@@ -70,7 +70,6 @@ public class APIController_WithMockServiceTest {
             .andExpect(jsonPath("$.total_requests", is(18.0)))
             .andExpect(jsonPath("$.ratio", is(11.0/18)))
             .andExpect(jsonPath("$.miss", is(7.0)));
-        
     }
 
 }
