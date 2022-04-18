@@ -12,6 +12,8 @@ public class Cache {
     private final long timeToLive;
     private final HashMap<String, CachedData> cacheMap;
 	private final int capacity;
+	private int hit;
+	private int miss;
 
     
     public Cache(long ttl, final long timerInterval, int maxItems) {
@@ -49,7 +51,7 @@ public class Cache {
 		}
 	}
 
-    public void put(String key, ArrayList<CovidData> value) {
+    public void put(String key, CovidData value) {
 		synchronized (cacheMap) {
 			if (this.size() < capacity){
 				// put(): Puts a key-value mapping into this map.
@@ -68,20 +70,23 @@ public class Cache {
 				//System.out.println(a.get(0));
 				cacheMap.remove(a.get(0).getKey());
 				cacheMap.put(key, new CachedData(value));
-
 			}
 			
 		}
 	}
  
-	public ArrayList<CovidData> get(String key) {
-		synchronized (cacheMap) {
+	public CovidData get(String key) {
+		synchronized (cacheMap) { 
+
 			CachedData c;
 			c = (CachedData) cacheMap.get(key);
- 
-			if (c == null)
+
+			if (c == null){
+				miss++;
 				return null;
+			}	
 			else {
+				hit++;
 				c.lastAccessed = System.currentTimeMillis();
 				return c.getData();
 			}
@@ -128,18 +133,32 @@ public class Cache {
 		}
 	}
 
+	public double getRatio(){
+		if (hit + miss == 0){
+			return 0;
+		}
+		return 1.0*hit/(hit+miss);
+	}
 
-    protected class CachedData {
+    public int getHit() {
+		return hit;
+	}
+
+	public int getMiss() {
+		return miss;
+	}
+
+	protected class CachedData {
 
         public Long lastAccessed = System.currentTimeMillis();
-		public ArrayList<CovidData> value;
+		public CovidData value;
 		public int hits = 0;
  
-		protected CachedData(ArrayList<CovidData> value) {
+		protected CachedData(CovidData value) {
 			this.value = value;
 		}
 
-		public ArrayList<CovidData> getData(){
+		public CovidData getData(){
 			this.hits++;
 			return value;
 		}
