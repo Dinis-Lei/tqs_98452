@@ -27,7 +27,7 @@ public class APIController_WithMockServiceTest {
     private APIService service;
 
     @Test
-    void whenGetDataByCountry_thenReturnJSONArrya() throws Exception{
+    void whenGetDataByCountry_thenReturnArrayList() throws Exception{
 
         ArrayList<CovidData> test = new ArrayList<>(){
             {
