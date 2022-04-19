@@ -33,6 +33,8 @@ public class Cache {
 							Thread.sleep(timerInterval * 100);
 						} catch (InterruptedException ex) {
 							ex.printStackTrace();
+							Thread.currentThread().interrupt();
+							break;
 						}
 						cleanup();
 					}

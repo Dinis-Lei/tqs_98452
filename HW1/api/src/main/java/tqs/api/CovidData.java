@@ -27,27 +27,6 @@ public class CovidData {
         this.day = day;
     }
 
-    public CovidData(JSONObject obj) throws ParseException{
-        System.out.println(obj);
-        JSONObject cases = (JSONObject) obj.get("cases");
-        JSONObject deaths = (JSONObject) obj.get("deaths");
-        JSONObject tests = (JSONObject) obj.get("tests");
-
-        System.out.println(deaths.get("new"));
-
-        this.country = (String) obj.get("country");
-        this.day = (String) obj.get("day");
-
-        this.newCases = cases.get("new") != null ? Long.parseLong( ((String) cases.get("new")).replace("+", "")) : null;
-        this.activeCases = (Long) cases.get("active");
-        this.totalCases = (Long) cases.get("total"); 
-        this.newDeaths = deaths.get("new") != null ? Long.parseLong(((String) deaths.get("new")).replace("+", "")) : null;
-        this.totalDeaths = (Long) deaths.get("total");
-        this.totalTests = (Long) tests.get("total");
-
-    }
-
-
     public CovidData() {
     }
 

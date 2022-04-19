@@ -20,7 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class APIControllerIT {
+public class APIControllerITest {
     
     @LocalServerPort
     int randomServerPort;
