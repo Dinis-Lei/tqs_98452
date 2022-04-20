@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Cache {
@@ -14,6 +15,7 @@ public class Cache {
 	private final int capacity;
 	private int hit;
 	private int miss;
+	private Logger logger = Logger.getLogger("apilogger");
 
     
     public Cache(long ttl, final long timerInterval, int maxItems) {
@@ -31,7 +33,7 @@ public class Cache {
 							// The Java Virtual Machine allows an application to have multiple threads of execution running concurrently.
 							Thread.sleep(timerInterval * 100);
 						} catch (InterruptedException ex) {
-							ex.printStackTrace();
+							logger.warning(ex.toString());
 							Thread.currentThread().interrupt();
 							break;
 						}
@@ -64,6 +66,7 @@ public class Cache {
 					(v1, v2) -> v1.getValue().lastAccessed.intValue() - v2.getValue().lastAccessed.intValue();
 				List<Map.Entry<String, CachedData>> a =
 				cacheMap.entrySet().stream().sorted(comp1.thenComparing(comp2)).collect(Collectors.toList());
+				logger.info(String.format("Cache: full capacity, removing %s and adding %s", a.get(0).getKey(), key));
 				cacheMap.remove(a.get(0).getKey());
 				cacheMap.put(key, new CachedData(value));
 			}
@@ -79,11 +82,13 @@ public class Cache {
 
 			if (c == null){
 				miss++;
+				logger.info(String.format("Cache: failed to fetch %s", key));
 				return null;
 			}	
 			else {
 				hit++;
 				c.lastAccessed = System.currentTimeMillis();
+				logger.info(String.format("Cache: successfully fetched %s", key));
 				return c.getData();
 			}
 		}

@@ -1,20 +1,26 @@
 package tqs.api;
 
+import java.util.logging.Logger;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+
 public class CovidFactory {
     
+    private Logger logger = Logger.getLogger("apilogger");
 
     public CovidData covidFactory(JSONArray resp){
 
         if( resp.isEmpty()){
+            logger.info("CovidFacroty: Creating Empty Object");
             return new CovidData();
         }
 
         JSONObject obj = (JSONObject) resp.get(0);
 
         if(!obj.containsKey("cases") || !obj.containsKey("deaths") || !obj.containsKey("tests") || !obj.containsKey("country") || !obj.containsKey("day")){
+            logger.info("CovidFacroty: Creating Empty Object");
             return new CovidData();
         }
 
@@ -32,6 +38,8 @@ public class CovidFactory {
         Long totalDeaths = (Long) deaths.get("total");
         Long totalTests = (Long) tests.get("total");
 
-        return new CovidData(country, newCases, activeCases, totalCases, newDeaths, totalDeaths, totalTests, day);
+        CovidData data = new CovidData(country, newCases, activeCases, totalCases, newDeaths, totalDeaths, totalTests, day);
+        logger.info(String.format("CovidFacroty: Creating data %s", data));
+        return data;
     }
 }
