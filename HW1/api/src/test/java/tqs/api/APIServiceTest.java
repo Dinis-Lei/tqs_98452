@@ -16,7 +16,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 @ExtendWith(MockitoExtension.class)
-public class APIServiceTest {
+class APIServiceTest {
     
     @Mock
     private MyHttpClient client;

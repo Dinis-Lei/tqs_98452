@@ -23,8 +23,7 @@ public class Cache {
  
 		if (timeToLive > 0 && timerInterval > 0) {
  
-			Thread t = new Thread(new Runnable() {
-				public void run() {
+			Thread t = new Thread( () ->  {
 					while (true) {
 						try {
 							
@@ -39,7 +38,7 @@ public class Cache {
 						cleanup();
 					}
 				}
-			});
+			);
  
 			// setDaemon(): Marks this thread as either a daemon thread or a user thread.
 			// The Java Virtual Machine exits when the only threads running are all daemon threads.
@@ -65,11 +64,6 @@ public class Cache {
 					(v1, v2) -> v1.getValue().lastAccessed.intValue() - v2.getValue().lastAccessed.intValue();
 				List<Map.Entry<String, CachedData>> a =
 				cacheMap.entrySet().stream().sorted(comp1.thenComparing(comp2)).collect(Collectors.toList());
-				//a.forEach((v) -> {
-				//	System.out.println(v.getKey());
-				//	System.out.println(v.getValue().lastAccessed);
-				//});
-				//System.out.println(a.get(0));
 				cacheMap.remove(a.get(0).getKey());
 				cacheMap.put(key, new CachedData(value));
 			}
@@ -81,7 +75,7 @@ public class Cache {
 		synchronized (cacheMap) { 
 
 			CachedData c;
-			c = (CachedData) cacheMap.get(key);
+			c = cacheMap.get(key);
 
 			if (c == null){
 				miss++;
@@ -152,9 +146,9 @@ public class Cache {
 
 	protected class CachedData {
 
-        public Long lastAccessed = System.currentTimeMillis();
-		public CovidData value;
-		public int hits = 0;
+        private Long lastAccessed = System.currentTimeMillis();
+		private CovidData value;
+		private int hits = 0;
  
 		protected CachedData(CovidData value) {
 			this.value = value;

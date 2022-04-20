@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 
-public class CovidFactoryTest {
+class CovidFactoryTest {
     
     @Test
     void factoryTest() throws ParseException{

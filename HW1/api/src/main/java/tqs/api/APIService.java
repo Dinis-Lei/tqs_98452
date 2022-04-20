@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,7 +30,7 @@ public class APIService {
     }
 
 
-    public ArrayList<CovidData> getDataByCountry(String country, int numberOfDays) throws IOException, InterruptedException, ParseException, java.text.ParseException{
+    public List<CovidData> getDataByCountry(String country, int numberOfDays) throws IOException, InterruptedException, ParseException {
         ArrayList<CovidData> data = new ArrayList<>();
 
         for(int i = 0; i < numberOfDays; i++){
@@ -53,7 +55,7 @@ public class APIService {
         return data;
     }
 
-    public HashMap<String, Double> getCacheStats(){
+    public Map<String, Double> getCacheStats(){
         HashMap<String, Double> stats = new HashMap<>();
         stats.put("hits", Double.valueOf(cache.getHit()));
         stats.put("miss", Double.valueOf(cache.getMiss()));

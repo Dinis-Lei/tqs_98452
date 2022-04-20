@@ -1,9 +1,5 @@
 package tqs.api;
 
-import java.text.ParseException;
-
-import org.json.simple.JSONObject;
-
 public class CovidData {
    
     private String country;

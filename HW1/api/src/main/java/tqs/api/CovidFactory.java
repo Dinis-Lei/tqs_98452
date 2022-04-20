@@ -8,7 +8,7 @@ public class CovidFactory {
 
     public CovidData covidFactory(JSONArray resp){
 
-        if( resp.size() < 1){
+        if( resp.isEmpty()){
             return new CovidData();
         }
 

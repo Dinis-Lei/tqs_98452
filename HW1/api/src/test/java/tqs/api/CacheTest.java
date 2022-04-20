@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.text.ParseException;
+import java.util.concurrent.TimeUnit;
 
-public class CacheTest {
+class CacheTest {
 
     private Cache cache;
 
@@ -27,14 +28,13 @@ public class CacheTest {
 
     @Test
     void testExpiration() throws InterruptedException, ParseException {
-        Thread.sleep(2000);
-
+        TimeUnit.MILLISECONDS.sleep(2000);
         assertThat(cache.size()).isEqualTo(3);
         CovidData data1 = new CovidData("france", 5L, 1234L, 100000L, 2L, 3000L, 5000L, "2022-04-13");               
         cache.put("france:2022-04-13", data1);
         cache.get("usa:2022-04-13");
         assertThat(cache.size()).isEqualTo(4);
-        Thread.sleep(1500);
+        TimeUnit.MILLISECONDS.sleep(1500);
         assertThat(cache.size()).isEqualTo(2);
         assertThat(cache.get("france:2022-04-13"))
             .extracting(CovidData::getDay, CovidData::getCountry)

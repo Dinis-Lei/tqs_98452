@@ -1,8 +1,8 @@
 package tqs.api;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +23,14 @@ public class APIController {
     private APIService service;
 
     @GetMapping("/{country}")
-    public ResponseEntity<ArrayList<CovidData>> getDataByCountry(@PathVariable(value = "country") String country, @RequestParam(defaultValue = "3") int numberOfDays)
-      throws IOException, InterruptedException, ParseException, java.text.ParseException{
-        ArrayList<CovidData> data = service.getDataByCountry(country, numberOfDays);
+    public ResponseEntity<List<CovidData>> getDataByCountry(@PathVariable(value = "country") String country, @RequestParam(defaultValue = "3") int numberOfDays)
+      throws IOException, InterruptedException, ParseException {
+        List<CovidData> data = service.getDataByCountry(country, numberOfDays);
         return ResponseEntity.ok().body(data);
     }
 
     @GetMapping("/cachestats")
-    public ResponseEntity<HashMap<String,Double>> getCacheStats(){
+    public ResponseEntity<Map<String,Double>> getCacheStats(){
       return ResponseEntity.ok().body(service.getCacheStats());
     }
 
