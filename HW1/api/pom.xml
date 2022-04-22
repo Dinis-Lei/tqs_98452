@@ -1,57 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.6</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>tqs</groupId>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>tqs</groupId>
 	<artifactId>api</artifactId>
 	<name>api</name>
-	<description>Demo project for Spring Boot</description>
-	
-	<properties>
-		<java.version>11</java.version>
-		<mockito-core.version>3.3.3</mockito-core.version>
-		<cucumber.version>7.2.3</cucumber.version>
-        <selenium-java.version>4.1.2</selenium-java.version>
-        <webdrivermanager.version>5.1.0</webdrivermanager.version>
-	</properties>
-	
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+    <version>1.0.0</version>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+    <!-- <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.4</version>
+		<relativePath/> 
+	</parent> -->
 
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+    <properties>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <junit-platform-suite.version>1.8.2</junit-platform-suite.version>
+        <cucumber.version>7.2.3</cucumber.version>
+        <selenium-java.version>4.1.1</selenium-java.version>
+        <webdrivermanager.version>5.0.3</webdrivermanager.version>
 
-		<!-- json tools -->
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+
+        <java.version>11</java.version>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+
+        <project.encondig>UTF-8</project.encondig>
+        <project.build.sourceEncoding>${project.encondig}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.encondig}</project.reporting.outputEncoding>
+
+        <mockito-core.version>3.3.3</mockito-core.version> 
+    </properties>
+
+    <dependencies>
+
+        <!-- json tools -->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
@@ -63,23 +48,28 @@
 			<version>2.12.0</version>
 		</dependency>
 
-		<!-- Mockito-->
+        <!-- Mockito-->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito-core.version}</version>
             <scope>test</scope>
-        </dependency>
-        <!-- Mockito/JUnit 5 integration (required for dependency injection) -->
+        </dependency> 
+
+        <!-- Cucumber -->
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito-core.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
-
-		<!-- Cucumber -->
-		<dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>${junit-platform-suite.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
@@ -92,7 +82,7 @@
             <scope>test</scope>
         </dependency>
 
-		<!-- Selenium -->
+        <!-- Selenium-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -106,18 +96,47 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- spring -->
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.4</version>
+		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+            <version>2.6.4</version>
+		</dependency>
 
-	<build>
-		<plugins>
-			<plugin>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>2.6.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.4</version>
 			</plugin>
 
-			<!-- Jacoco -->
-			<plugin>
+            <!-- Jacoco -->
+            <plugin>
 			    <groupId>org.jacoco</groupId>
 			    <artifactId>jacoco-maven-plugin</artifactId>
 			    <version>0.8.3</version>
@@ -137,7 +156,12 @@
 			    </executions>
 			</plugin>
 
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
