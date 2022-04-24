@@ -23,7 +23,7 @@ public class WebPageSteps {
 
     @Before
     public void setUp(){
-        driver.manage().timeouts().setScriptTimeout(100,TimeUnit.SECONDS);
+        driver.manage().timeouts();
     }
 
      @After
